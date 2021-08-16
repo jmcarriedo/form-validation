@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Patient Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: linear-gradient(cyan,lightgreen);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        #inputBoxMedicine {
+            opacity:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="py-5 container d-flex justify-content-center">
+        <form name="patientForm" id="patientForm" onsubmit="return validateForm()" class="px-5 py-4 col-9 bg-white shadow-lg" method="post">
+
+            <!-- <div class="d-flex justify-content-center"><img src="images/logo.png"></div> -->
+
+            <div class="mb-5 mt-3 row">
+                <h2 class="col fw-bold text-center text-uppercase">Patient Information Form</h2>
+                
+                <!-- <div class="mb-4 col-3 d-flex flex-row align-items-center">
+                    <label class="form-label form-text">Form No.</label>
+                    <input type="value" class="ms-1 form-control" style="width: 5rem; height: 2rem;">
+                </div> -->
+            </div>
+
+            <!-- NAME -->
+            <div class="mb-3 row">
+                <div class="col">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName">
+                </div>
+                <div class="col">
+                    <label class="form-label">Middle Name</label>
+                    <input type="text" class="form-control" name="middleName" id="middleName">
+                </div>
+                <div class="col">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName">
+                </div>
+            </div>
+
+            <!-- GENDER, BIRTHDATE, CONTACT -->
+            <div class="mb-3 row">
+                <!-- <div class="col">
+                <label for="inputState" class="form-label">Gender</label>
+                <select id="inputState" class="form-select">
+                  <option selected>Choose...</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+                </div> -->
+
+                <div class="col">
+                    <label class="form-label">Gender</label>
+                    <div class="">
+                        <input type="radio" class="form-check-input" name="inputGender" >
+                        <label class="me-3 form-check-label">Male</label>
+                    
+                        <input type="radio" class="form-check-input" name="inputGender">
+                        <label class="form-check-label">Female</label>
+                    </div>
+                </div>
+            
+                
+                <div class="col">
+                <label class="form-label">Birth Date</label>
+                <input type="date" class="form-control" id="inputBirthday" min="1911-01-01" max="2021-08-04">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Contact Number</label>
+                    <input type="value" class="form-control" id="inputContact" placeholder="09xx-xxx-xxxx">
+                    <!-- pattern="[0][9][0-9]{9}" -->
+                </div>
+
+            </div>
+
+            <!-- ADDRESS  -->
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Street, Block, Lot, Building, City, Region, Zip Code" >
+                </div>
+            </div>
+
+            <!-- REGION, CITY, ZIP -->
+            <!-- <div class="mb-3 row">
+                <div class="col-6">
+                    <label for="inputState" class="form-label">Region</label>
+                    <input type="text" class="form-control" id="inputRegion" placeholder="" required>
+                </div>
+
+                <div class="col-4">
+                    <label for="inputState" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity" placeholder="" required>
+                </div>
+
+                <div class="mb-3 col-2">
+                    <label for="inputZip" class="form-label">Zip Code</label>
+                    <input type="text" class="form-control" id="inputZip" required>
+                </div>       
+            </div> -->
+            
+        
+            <!-- MEDICAL HISTORY -->
+            <h5 class="pt-3 mb-2 border-top text-uppercase">Medical History</h5>  
+            
+            <div class="mb-3 border-bottom">
+                <label class="fst-italic form-label" style="color: teal;">Do you currently have or have you experienced any of these? Select all that apply.</label>
+                <br>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <input type="checkbox" name="inputMedicalHistory" id="checkbox1" value="Asthma"> 
+                        <label for="checkbox1" class="ms-2"> Asthma </label> <br>
+                        <input type="checkbox" name="inputMedicalHistory" id="checkbox2" value="Cancer"> 
+                        <label for="checkbox2" class="ms-2"> Cancer </label> <br>
+                        <input type="checkbox" name="inputMedicalHistory" id="checkbox3" value="Cardiac Disease"> 
+                        <label for="checkbox3" class="ms-2"> Cardiac Disease </label> <br>
+                        <input type="checkbox" name="inputMedicalHistory" id="checkbox4" value="Diabetes"> 
+                        <label for="checkbox4" class="ms-2"> Diabetes </label> <br>
+                    </div>
+                    <div class="col">
+                        <input type="checkbox" name="inputMedicalHistory" id="checkbox5" value="Hypertension"> 
+                        <label for="checkbox5" class="ms-2"> Hypertension </label> <br>
+                        <input type="checkbox" name="inputMedicalHistory" id="checkbox6" value="Pyschiatric Disorder"> 
+                        <label for="checkbox6" class="ms-2"> Pyschiatric Disorder </label> <br>
+                        <input type="checkbox" name="inputMedicalHistory" id="checkbox7" value="Epilepsy" class="mb-3"> 
+                        <label for="checkbox7" class="ms-2"> Epilepsy </label> <br>
+                    </div>
+                </div>
+                
+            </div>
+
+           
+            <h5 class="mt-3 mb-2 text-uppercase">Symptoms</h5>  
+
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="inputSymptoms" class="fst-italic form-label" style="color: teal;">Are you currently experiencing any of the following symptoms? Select all that apply.</label>
+                    <select id="inputSymptoms" class="form-select" multiple="multiple">
+                      <option value="Chest Pain"> Chest Pain </option>
+                      <option value="Respiratory"> Respiratory </option>
+                      <option value="Hematological"> Hematological </option>
+                      <option value="Lymphatic"> Lymphatic </option>
+                      <option value="Neurological"> Neurological </option>
+                      <option value="Pyschiatric"> Pyschiatric </option>
+                      <option value="Gastrointestinal"> Gastrointestinal </option>
+                      <option value="Weight Loss"> Weight Loss </option>
+                      <!-- <option value="None"> None </option> -->
+                    </select>
+                </div>
+            </div>
+
+       
+            <div class="mb-4 row border-top">
+                <div class="mt-3 col-6">
+                    <div class="col">
+                        <label class="form-label">Are you currently taking any medication?</label>
+                    </div>
+                
+                    <div class="col">
+                        <input name="yesNoBtn" id="yesBtn" type="radio" class="btn btn-outline-dark" value="Yes" onclick="showHideBox(this)">
+                        <label class="me-5 form-check-label">Yes</label>
+                  
+                        <input name="yesNoBtn" id="noBtn" type="radio" class="btn btn-outline-dark" value="No" onclick="showHideBox(this)">
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <div id="inputBoxMedicine" class="col-6">
+                    <label for="inputMedication" class="mt-3 fst-italic form-label" style="color: teal;">If yes, please provide name of medication.</label>
+                    <input type="text" class="form-control" name="inputMedication" id="inputMedication">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <button type="button" id="clearForm" onclick="clearAll()" class="btn btn-outline-danger col-12 mt-2 mb-4 text-wrap">Clear All Fields</button>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <button type="submit" class="btn btn-dark col-12 col-sm-12 mt-2 mb-4 text-wrap">Submit Form</button>
+                </div>
+            </div>
+            
+        </form>
+        </div>
+
+        <script src="js/exercise.js"></script>
+    
+</body>
+</html>
